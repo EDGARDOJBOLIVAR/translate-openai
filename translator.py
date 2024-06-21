@@ -27,12 +27,12 @@ def main():
     if output_file:
         with open(output_file, 'w') as file:
             file.write(translated_text)
-        print(f"Original text: {original_text}")
-        print(f"Translated text: {translated_text}")
+        # print(f"Original text: {original_text}")
+        # print(f"Translated text: {translated_text}")
         print(f"Translation saved in: {output_file}")
     else:
-        print(f"Original text: {original_text}")
-        print(f"Translated text: {translated_text}")
+        # print(f"Original text: {original_text}")
+        print(translated_text)
 
 if __name__ == "__main__":
     main()

@@ -1,9 +1,10 @@
-import openai
+from openai import OpenAI
 
 class TranslationService:
     def __init__(self, api_key):
         self.api_key = api_key
-        openai.api_key = self.api_key
+        self.client = OpenAI(api_key=self.api_key)
+        # openai.api_key = self.api_key
 
     def translate_text(self, text, target_language='English'):
         """
@@ -15,17 +16,16 @@ class TranslationService:
         """
         prompt = f"Translate the following text to {target_language}: {text}"
         
-        response = openai.ChatCompletion.create(
+        response = self.client.chat.completions.create(
             model="gpt-4",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant that translates text."},
                 {"role": "user", "content": prompt},
             ],
             max_tokens=1000,
-            n=1,
-            stop=None,
             temperature=0.5,
         )
         
-        translation = response.choices[0].message['content'].strip()
+        translation = response.choices[0].message.content.strip()
         return translation
+
