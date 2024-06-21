@@ -14,7 +14,7 @@ class TranslationService:
         :param target_language: Language to translate the text into (default is English)
         :return: Translated text
         """
-        prompt = f"Translate the following text to {target_language}: {text}"
+        prompt = f"Translate the following text to {target_language} and provide only the translated text: \"{text}\""
         
         response = self.client.chat.completions.create(
             model="gpt-4",
